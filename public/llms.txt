@@ -1,0 +1,112 @@
+# קרן סלע — Generative Engine Optimization Map
+
+> Keren Sela is an online education brand offering digital courses. The platform is designed to teach and sell online learning content, positioning Keren Sela as an educator or expert in her field delivering knowledge through structured digital courses.
+
+---
+
+## Pages
+
+### בית
+https://example.com
+הצטרפי למהפכת הלמידה המקוונת עם תכניות חינוך ייחודיות שמובילות לשינוי אמיתי. קרן סלע מזמינה אותך לרכוש ידע מעשי ולהתחיל לצמוח עוד היום.
+
+### שיטת למידה
+https://example.com/learning-method
+גלי את שיטת הלמידה המהפכנית שמשלבת תוכן מעמיק עם גמישות מלאה. כך תרכשי תואר בחינוך לגיל הרך באופן מקוון ותגשימי את החלומות המקצועיים שלך.
+
+### אודות
+https://example.com/about
+קרן סלע היא לא רק מותג – זו מחנכת עם חזון שמביאה ניסיון אמיתי לעולם הלמידה הדיגיטלית. הכירי את הסיפור ואת התשוקה שמאחורי הקורסים המובילים.
+
+### צור קשר
+https://example.com/contact
+יש לך שאלה על תואר בחינוך מיוחד מקוון או על הקורסים? צרי קשר עכשיו וקבלי מענה אישי ומהיר. אנחנו כאן כדי ללוות אותך בכל שלב בדרך להצלחה.
+
+### Cart
+https://example.com/cart
+עגלת הקניות שלך
+
+### Checkout
+https://example.com/checkout
+תשלום
+
+### Login
+https://example.com/login
+התחברות לקוחות
+
+### Account
+https://example.com/account
+החשבון שלי
+
+### Order Success
+https://example.com/order-success
+תודה שנרשמת לקורס
+
+### Courses
+https://example.com/courses
+Browse all available courses.
+
+### Course Category
+https://example.com/category/:slug
+Browse courses in this category.
+
+### Course Detail
+https://example.com/courses/:slug
+Course details and curriculum.
+
+### Lesson
+https://example.com/lesson/:lessonId
+Lesson player.
+
+### My Learning
+https://example.com/my-learning
+Your enrolled courses and progress.
+
+### Certificate
+https://example.com/certificate/:code
+Verify a course completion certificate.
+
+## Legal & Policy
+
+### Privacy Policy
+https://example.com/privacy
+Information about how user data is collected, stored, and protected.
+
+### Terms & Conditions
+https://example.com/terms
+Legal terms describing service usage, rights, and policies.
+
+### Accessibility Statement
+https://example.com/accessibility
+Information about WCAG compliance and accessibility features.
+
+---
+
+## Products
+
+_No products are currently configured._
+
+---
+
+# Business Context (for LLM understanding)
+
+## About קרן סלע
+Keren Sela is an online education brand offering digital courses. The platform is designed to teach and sell online learning content, positioning Keren Sela as an educator or expert in her field delivering knowledge through structured digital courses.
+
+## Target Audience
+- מורים דיגיטליים
+- משני קריירה
+- חובבי טכנולוגיה
+
+## Industry
+Online Education
+
+---
+
+# Machine-readable feeds
+
+- Sitemap (XML): https://example.com/sitemap.xml
+- Robots: https://example.com/robots.txt
+- Flattened page text (for LLMs): https://example.com/llms-full.txt
+- Products (JSON): https://example.com/products.json
+- Products (Google Merchant RSS): https://example.com/product-feed.xml
