@@ -2,15 +2,15 @@
 <rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
   <channel>
     <title>קרן סלע</title>
-    <link>https://example.com</link>
+    <link>https://keren-sela.zappy5.app</link>
     <description>Product feed for קרן סלע</description>
-    <lastBuildDate>Wed, 15 Jul 2026 13:10:42 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 15 Jul 2026 13:11:07 GMT</lastBuildDate>
     <item>
       <g:id>d369d131-f1d4-4dce-81d9-eb7d9dae1865</g:id>
       <g:title>הקורס המלא להכנת חמוצים</g:title>
       <g:description>קורס מעולה ואינפורמטיבי בנושא כך וכך</g:description>
-      <g:link>https://example.com/product/hkvrs-hmla-lhknt-chmvtsym-2kqse8</g:link>
-      <g:image_link>https://example.com/assets/product-1784027571876-kibkyc.webp</g:image_link>
+      <g:link>https://keren-sela.zappy5.app/product/hkvrs-hmla-lhknt-chmvtsym-2kqse8</g:link>
+      <g:image_link>https://keren-sela.zappy5.app/assets/product-1784027571876-kibkyc.webp</g:image_link>
       <g:availability>in_stock</g:availability>
       <g:price>1500.00 ILS</g:price>
       <g:condition>new</g:condition>

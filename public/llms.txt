@@ -7,77 +7,77 @@
 ## Pages
 
 ### בית
-https://example.com
+https://keren-sela.zappy5.app
 הצטרפי למהפכת הלמידה המקוונת עם תכניות חינוך ייחודיות שמובילות לשינוי אמיתי. קרן סלע מזמינה אותך לרכוש ידע מעשי ולהתחיל לצמוח עוד היום.
 
 ### שיטת למידה
-https://example.com/learning-method
+https://keren-sela.zappy5.app/learning-method
 גלי את שיטת הלמידה המהפכנית שמשלבת תוכן מעמיק עם גמישות מלאה. כך תרכשי תואר בחינוך לגיל הרך באופן מקוון ותגשימי את החלומות המקצועיים שלך.
 
 ### אודות
-https://example.com/about
+https://keren-sela.zappy5.app/about
 קרן סלע היא לא רק מותג – זו מחנכת עם חזון שמביאה ניסיון אמיתי לעולם הלמידה הדיגיטלית. הכירי את הסיפור ואת התשוקה שמאחורי הקורסים המובילים.
 
 ### צור קשר
-https://example.com/contact
+https://keren-sela.zappy5.app/contact
 יש לך שאלה על תואר בחינוך מיוחד מקוון או על הקורסים? צרי קשר עכשיו וקבלי מענה אישי ומהיר. אנחנו כאן כדי ללוות אותך בכל שלב בדרך להצלחה.
 
 ### Cart
-https://example.com/cart
+https://keren-sela.zappy5.app/cart
 עגלת הקניות שלך
 
 ### Checkout
-https://example.com/checkout
+https://keren-sela.zappy5.app/checkout
 תשלום
 
 ### Login
-https://example.com/login
+https://keren-sela.zappy5.app/login
 התחברות לקוחות
 
 ### Account
-https://example.com/account
+https://keren-sela.zappy5.app/account
 החשבון שלי
 
 ### Order Success
-https://example.com/order-success
+https://keren-sela.zappy5.app/order-success
 תודה שנרשמת לקורס
 
 ### Courses
-https://example.com/courses
+https://keren-sela.zappy5.app/courses
 Browse all available courses.
 
-### Course Category
-https://example.com/category/:slug
+### קורסים שלנו
+https://keren-sela.zappy5.app/category/:slug
 Browse courses in this category.
 
 ### Course Detail
-https://example.com/courses/:slug
+https://keren-sela.zappy5.app/courses/:slug
 Course details and curriculum.
 
 ### Lesson
-https://example.com/lesson/:lessonId
+https://keren-sela.zappy5.app/lesson/:lessonId
 Lesson player.
 
 ### My Learning
-https://example.com/my-learning
+https://keren-sela.zappy5.app/my-learning
 Your enrolled courses and progress.
 
 ### Certificate
-https://example.com/certificate/:code
+https://keren-sela.zappy5.app/certificate/:code
 Verify a course completion certificate.
 
 ## Legal & Policy
 
 ### Privacy Policy
-https://example.com/privacy
+https://keren-sela.zappy5.app/privacy
 Information about how user data is collected, stored, and protected.
 
 ### Terms & Conditions
-https://example.com/terms
+https://keren-sela.zappy5.app/terms
 Legal terms describing service usage, rights, and policies.
 
 ### Accessibility Statement
-https://example.com/accessibility
+https://keren-sela.zappy5.app/accessibility
 Information about WCAG compliance and accessibility features.
 
 ---
@@ -87,12 +87,12 @@ Information about WCAG compliance and accessibility features.
 **Total active products: 1**
 
 ### הקורס המלא להכנת חמוצים
-https://example.com/product/hkvrs-hmla-lhknt-chmvtsym-2kqse8
+https://keren-sela.zappy5.app/product/hkvrs-hmla-lhknt-chmvtsym-2kqse8
 - Price: 0.00 ILS (sale, was 1500.00 ILS)
 - Availability: In stock
 - Category: קורסים בנושא X 
 - Description: קורס מעולה ואינפורמטיבי בנושא כך וכך
-- Image: https://example.com/assets/product-1784027571876-kibkyc.webp
+- Image: https://keren-sela.zappy5.app/assets/product-1784027571876-kibkyc.webp
 
 ---
 
@@ -113,8 +113,8 @@ Online Education
 
 # Machine-readable feeds
 
-- Sitemap (XML): https://example.com/sitemap.xml
-- Robots: https://example.com/robots.txt
-- Flattened page text (for LLMs): https://example.com/llms-full.txt
-- Products (JSON): https://example.com/products.json
-- Products (Google Merchant RSS): https://example.com/product-feed.xml
+- Sitemap (XML): https://keren-sela.zappy5.app/sitemap.xml
+- Robots: https://keren-sela.zappy5.app/robots.txt
+- Flattened page text (for LLMs): https://keren-sela.zappy5.app/llms-full.txt
+- Products (JSON): https://keren-sela.zappy5.app/products.json
+- Products (Google Merchant RSS): https://keren-sela.zappy5.app/product-feed.xml
