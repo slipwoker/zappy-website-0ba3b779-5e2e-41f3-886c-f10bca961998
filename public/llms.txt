@@ -46,7 +46,7 @@ https://keren-sela.zappy5.app/order-success
 https://keren-sela.zappy5.app/courses
 Browse all available courses.
 
-### קורסים שלנו
+### Course Category
 https://keren-sela.zappy5.app/category/:slug
 Browse courses in this category.
 
