@@ -5222,3 +5222,14 @@ Verifying…
 
 ---
 
+## Product Catalog
+
+### הקורס המלא להכנת חמוצים
+URL: https://example.com/product/hkvrs-hmla-lhknt-chmvtsym-2kqse8
+Price: 0.00 ILS (sale, was 1500.00 ILS)
+Availability: In stock
+
+תיאור ארוך יותר על הקורס המעולה והאינפורמטיבי בנושא כך וכך
+
+---
+

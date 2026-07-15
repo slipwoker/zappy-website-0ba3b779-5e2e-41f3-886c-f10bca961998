@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow">
+<!DOCTYPE html><html data-zappy-site-type="ecommerce" lang="he" dir="rtl"><head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
     <title>שיטה שפורצת גבולות בלימודים — קרן סלע</title>
-    <meta name="description" content="גלי את שיטת הלמידה המהפכנית שמשלבת תוכן מעמיק עם גמישות מלאה. כך תרכשי תואר בחינוך לגיל הרך באופן מקוון ותגשימי את החלומות המקצועיים שלך.">
-    <meta name="keywords" content="שיטת למידה ייחודית, תואר בחינוך לגיל הרך מקוון, למידה מותאמת אישית, קורסי חינוך מיוחד">
+    <meta name="description" content="גלי את שיטת הלמידה המהפכנית שמשלבת תוכן מעמיק עם גמישות מלאה. כך תרכשי תואר בחינוך לגיל הרך באופן מקוון ותגשימי את החלומות המקצועיים שלך." />
+    <meta name="keywords" content="שיטת למידה ייחודית, תואר בחינוך לגיל הרך מקוון, למידה מותאמת אישית, קורסי חינוך מיוחד" />
     
     <!-- Favicons -->
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png">
-    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
     <!-- Zappy Analytics -->
 <script>
 (function() {
@@ -284,19 +282,389 @@
 })();
 </script>
 <!-- End Zappy Analytics -->
-    <meta property="og:title" content="שיטה שפורצת גבולות בלימודים — קרן סלע">
-    <meta property="og:description" content="גלי את שיטת הלמידה המהפכנית שמשלבת תוכן מעמיק עם גמישות מלאה. כך תרכשי תואר בחינוך לגיל הרך באופן מקוון ותגשימי את החלומות המקצועיים שלך.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="שיטה שפורצת גבולות בלימודים — קרן סלע">
-    <meta name="twitter:description" content="גלי את שיטת הלמידה המהפכנית שמשלבת תוכן מעמיק עם גמישות מלאה. כך תרכשי תואר בחינוך לגיל הרך באופן מקוון ותגשימי את החלומות המקצועיים שלך.">
-    <meta property="og:type" content="website">
-  <meta property="og:locale" content="he_IL">
+<!-- Zappy Marketing Events -->
+<script>
+(function() {
+  'use strict';
+  if (window.zappyFireMarketingEvent) return;
+
+  var ECOM_MODE = "courses";
+  var IS_CATALOG = false;
+  var IS_FULL = true;
+
+  var ECOM_ALIAS = {
+    begin_checkout: 'checkout_started',
+    purchase: 'checkout_complete',
+    add_to_cart: 'add_to_cart',
+    view_product: 'view_product'
+  };
+
+  function pagePath() {
+    try {
+      if (window.ZAPPY_CONFIG && window.ZAPPY_CONFIG.currentPagePath) {
+        return window.ZAPPY_CONFIG.currentPagePath;
+      }
+    } catch (e) {}
+    try { return window.location.pathname || '/'; } catch (e2) { return '/'; }
+  }
+
+  function normalizeItems(meta) {
+    meta = meta || {};
+    var raw = meta.items || meta.cartItems || meta.cart_items || meta.lineItems || [];
+    if (!Array.isArray(raw)) raw = [];
+    var out = [];
+    for (var i = 0; i < raw.length; i++) {
+      var item = raw[i];
+      if (!item || typeof item !== 'object') continue;
+      var id = String(item.item_id || item.productId || item.product_id || item.id || '').trim();
+      var name = String(item.item_name || item.productName || item.product_name || item.name || '').trim();
+      var price = parseFloat(item.price != null ? item.price : (item.unitPrice != null ? item.unitPrice : 0)) || 0;
+      var quantity = Math.max(1, parseInt(item.quantity != null ? item.quantity : (item.qty != null ? item.qty : 1), 10) || 1);
+      if (!id && !name) continue;
+      out.push({ item_id: id || name, item_name: name || id, price: price, quantity: quantity });
+    }
+    return out;
+  }
+
+  function buildGa4Params(eventId, meta) {
+    meta = meta || {};
+    var items = normalizeItems(meta);
+    var value = parseFloat(meta.value != null ? meta.value : (meta.total != null ? meta.total : 0)) || 0;
+    var currency = String(meta.currency || 'USD').toUpperCase();
+
+    if (eventId === 'checkout_complete') {
+      return {
+        transaction_id: String(meta.transaction_id || meta.orderId || meta.order_id || meta.orderNumber || '') || undefined,
+        value: value,
+        currency: currency,
+        items: items
+      };
+    }
+    if (eventId === 'checkout_started') {
+      return { value: value, currency: currency, items: items };
+    }
+    if (eventId === 'add_to_cart') {
+      var atcItems = items.length ? items : [{
+        item_id: String(meta.productId || meta.product_id || ''),
+        item_name: String(meta.productName || meta.product_name || ''),
+        price: parseFloat(meta.value != null ? meta.value : (meta.price != null ? meta.price : 0)) || 0,
+        quantity: parseInt(meta.quantity != null ? meta.quantity : 1, 10) || 1
+      }].filter(function(x) { return x.item_id || x.item_name; });
+      return {
+        value: value || (atcItems[0] ? atcItems[0].price * atcItems[0].quantity : 0),
+        currency: currency,
+        items: atcItems
+      };
+    }
+    if (eventId === 'view_product') {
+      var vpItems = items.length ? items : [{
+        item_id: String(meta.productId || meta.product_id || ''),
+        item_name: String(meta.productName || meta.product_name || ''),
+        price: parseFloat(meta.price != null ? meta.price : (meta.value != null ? meta.value : 0)) || 0,
+        quantity: 1
+      }].filter(function(x) { return x.item_id || x.item_name; });
+      return {
+        currency: currency,
+        value: value || (vpItems[0] ? vpItems[0].price : 0),
+        items: vpItems
+      };
+    }
+    if (eventId === 'whatsapp_click' || eventId === 'phone_click') {
+      return { method: eventId === 'whatsapp_click' ? 'whatsapp' : 'phone', page_path: meta.pagePath || pagePath() };
+    }
+    if (eventId === 'contact_form_submitted' || eventId === 'product_inquiry') {
+      return { page_path: meta.pagePath || pagePath() };
+    }
+    return meta;
+  }
+
+  function buildMetaParams(eventId, meta) {
+    meta = meta || {};
+    var items = normalizeItems(meta);
+    var value = parseFloat(meta.value != null ? meta.value : (meta.total != null ? meta.total : 0)) || 0;
+    var currency = String(meta.currency || 'USD').toUpperCase();
+    var contentIds = [];
+    var numItems = 0;
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].item_id) contentIds.push(items[i].item_id);
+      numItems += items[i].quantity || 1;
+    }
+
+    if (eventId === 'checkout_complete') {
+      return {
+        value: value,
+        currency: currency,
+        content_ids: contentIds.length ? contentIds : undefined,
+        content_type: 'product',
+        num_items: numItems || undefined,
+        order_id: String(meta.order_id || meta.orderId || meta.transaction_id || meta.orderNumber || '') || undefined
+      };
+    }
+    if (eventId === 'checkout_started') {
+      return {
+        value: value,
+        currency: currency,
+        content_ids: contentIds.length ? contentIds : undefined,
+        content_type: 'product',
+        num_items: numItems || parseInt(meta.itemCount != null ? meta.itemCount : 0, 10) || undefined
+      };
+    }
+    if (eventId === 'add_to_cart') {
+      var id = String(meta.productId || meta.product_id || contentIds[0] || '');
+      return {
+        value: value || (items[0] ? items[0].price * items[0].quantity : 0),
+        currency: currency,
+        content_ids: id ? [id] : (contentIds.length ? contentIds : undefined),
+        content_type: 'product',
+        content_name: meta.productName || meta.product_name || (items[0] && items[0].item_name),
+        num_items: parseInt(meta.quantity != null ? meta.quantity : (numItems || 1), 10) || 1
+      };
+    }
+    if (eventId === 'view_product') {
+      var vid = String(meta.productId || meta.product_id || contentIds[0] || '');
+      return {
+        value: value || parseFloat(meta.price != null ? meta.price : 0) || 0,
+        currency: currency,
+        content_ids: vid ? [vid] : (contentIds.length ? contentIds : undefined),
+        content_type: 'product',
+        content_name: meta.productName || meta.product_name || (items[0] && items[0].item_name)
+      };
+    }
+    if (eventId === 'whatsapp_click' || eventId === 'phone_click') {
+      return {
+        content_name: eventId === 'whatsapp_click' ? 'WhatsApp' : 'Phone',
+        content_category: 'contact'
+      };
+    }
+    if (eventId === 'contact_form_submitted' || eventId === 'product_inquiry') {
+      return {
+        content_name: eventId === 'product_inquiry' ? 'Product inquiry' : 'Contact form',
+        content_category: meta.productName || meta.product_name || undefined
+      };
+    }
+    return meta;
+  }
+
+  var PLATFORM = {
+    whatsapp_click: { ga4: 'contact', meta: 'Contact', gtm: 'whatsapp_click', ecom: false },
+    phone_click: { ga4: 'contact', meta: 'Contact', gtm: 'phone_click', ecom: false },
+    contact_form_submitted: { ga4: 'generate_lead', meta: 'Lead', gtm: 'contact_form_submitted', ecom: false },
+    checkout_started: { ga4: 'begin_checkout', meta: 'InitiateCheckout', gtm: 'begin_checkout', ecom: true },
+    checkout_complete: { ga4: 'purchase', meta: 'Purchase', gtm: 'purchase', ecom: true },
+    product_inquiry: { ga4: 'generate_lead', meta: 'Lead', gtm: 'product_inquiry', ecom: false },
+    add_to_cart: { ga4: 'add_to_cart', meta: 'AddToCart', gtm: 'add_to_cart', ecom: true },
+    view_product: { ga4: 'view_item', meta: 'ViewContent', gtm: 'view_item', ecom: true }
+  };
+
+  function purchaseDedupKey(orderId) {
+    return 'zappy_purchase_fired_' + String(orderId || '');
+  }
+
+  function alreadyFiredPurchase(orderId) {
+    if (!orderId) return false;
+    try {
+      return sessionStorage.getItem(purchaseDedupKey(orderId)) === '1';
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function markPurchaseFired(orderId) {
+    if (!orderId) return;
+    try { sessionStorage.setItem(purchaseDedupKey(orderId), '1'); } catch (e) {}
+  }
+
+  /**
+   * Fire a marketing event to first-party analytics + GA4/GTM/Meta when present.
+   * @param {string} eventName marketing ID or ecommerce alias
+   * @param {object} [metadata]
+   * @param {{ skipFirstParty?: boolean }} [opts]
+   */
+  window.zappyFireMarketingEvent = function(eventName, metadata, opts) {
+    try {
+      opts = opts || {};
+      metadata = metadata || {};
+      var eventId = ECOM_ALIAS[eventName] || eventName;
+      var plat = PLATFORM[eventId];
+      if (!plat) return;
+
+      if (!metadata.pagePath && !metadata.page_path) {
+        metadata.pagePath = pagePath();
+      }
+
+      if (eventId === 'checkout_complete') {
+        var oid = String(metadata.orderId || metadata.order_id || metadata.transaction_id || '');
+        if (oid && alreadyFiredPurchase(oid)) return;
+        if (oid) markPurchaseFired(oid);
+      }
+
+      // First-party (skip when already tracked via zappyTrackEcomAnalytics path
+      // that opts out, or when caller already recorded under a different name)
+      if (!opts.skipFirstParty) {
+        try {
+          if (window.zappyAnalytics && typeof window.zappyAnalytics.track === 'function') {
+            window.zappyAnalytics.track(eventId, metadata);
+          }
+        } catch (e1) {}
+      }
+
+      // GTM / dataLayer — platform-standard ecommerce event names
+      try {
+        window.dataLayer = window.dataLayer || [];
+        if (plat.ecom) {
+          var ga4ForGtm = buildGa4Params(eventId, metadata);
+          var ecommerce = {};
+          if (ga4ForGtm.transaction_id) ecommerce.transaction_id = ga4ForGtm.transaction_id;
+          if (ga4ForGtm.value != null) ecommerce.value = ga4ForGtm.value;
+          if (ga4ForGtm.currency) ecommerce.currency = ga4ForGtm.currency;
+          if (ga4ForGtm.items) ecommerce.items = ga4ForGtm.items;
+          window.dataLayer.push({ event: plat.gtm, ecommerce: ecommerce });
+          // Secondary Zappy-specific trigger for merchants who want it
+          if (eventId === 'checkout_complete' || eventId === 'checkout_started') {
+            window.dataLayer.push({ event: eventId, ecommerce: ecommerce });
+          }
+        } else {
+          var dl = { event: plat.gtm };
+          for (var k in metadata) {
+            if (Object.prototype.hasOwnProperty.call(metadata, k)) dl[k] = metadata[k];
+          }
+          window.dataLayer.push(dl);
+        }
+      } catch (e2) {}
+
+      // GA4 gtag
+      try {
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', plat.ga4, buildGa4Params(eventId, metadata));
+        }
+      } catch (e3) {}
+
+      // Meta Pixel (only when fbq is loaded — consent-gated lazy loader)
+      try {
+        if (typeof window.fbq === 'function') {
+          window.fbq('track', plat.meta, buildMetaParams(eventId, metadata));
+        }
+      } catch (e4) {}
+    } catch (err) {}
+  };
+
+  // ---- Click listeners (capture) ----
+  var recent = Object.create(null);
+  function dedupe(key) {
+    var now = Date.now();
+    if (recent[key] && now - recent[key] < 800) return true;
+    recent[key] = now;
+    return false;
+  }
+
+  function closest(el, selector) {
+    if (!el) return null;
+    if (el.closest) return el.closest(selector);
+    return null;
+  }
+
+  function findAnchor(el) {
+    var node = el;
+    while (node && node !== document) {
+      if (node.tagName === 'A') return node;
+      node = node.parentElement;
+    }
+    return null;
+  }
+
+  function isWhatsAppHref(href) {
+    if (!href) return false;
+    var h = String(href).toLowerCase();
+    return h.indexOf('wa.me/') !== -1 ||
+      h.indexOf('api.whatsapp.com') !== -1 ||
+      h.indexOf('whatsapp.com/send') !== -1 ||
+      h.indexOf('whatsapp:') === 0;
+  }
+
+  document.addEventListener('click', function(e) {
+    try {
+      var target = e.target;
+      if (!target) return;
+
+      // WhatsApp
+      var waFloat = closest(target, '.whatsapp-float, a.whatsapp-float, [data-zappy-whatsapp]');
+      var anchor = findAnchor(target);
+      var href = (anchor && anchor.href) || '';
+      if (waFloat || (anchor && isWhatsAppHref(href))) {
+        if (!dedupe('wa:' + href)) {
+          var waSource = waFloat ? 'float' : 'link';
+          window.zappyFireMarketingEvent('whatsapp_click', {
+            source: waSource,
+            href: href || null,
+            pagePath: pagePath()
+          });
+        }
+        return;
+      }
+
+      // Phone
+      var phoneBtn = closest(target, '.phone-header-btn, .nav-phone-btn, .call-btn, [data-zappy-phone]');
+      var telHref = '';
+      if (anchor && anchor.href && String(anchor.href).toLowerCase().indexOf('tel:') === 0) {
+        telHref = anchor.href;
+      } else if (phoneBtn && phoneBtn.href && String(phoneBtn.href).toLowerCase().indexOf('tel:') === 0) {
+        telHref = phoneBtn.href;
+      }
+      if (phoneBtn || telHref) {
+        var phone = '';
+        if (telHref) {
+          phone = String(telHref).replace(/^tel:/i, '').trim();
+        }
+        if (!dedupe('tel:' + (phone || (phoneBtn && phoneBtn.id) || 'btn'))) {
+          window.zappyFireMarketingEvent('phone_click', {
+            source: phoneBtn ? 'button' : 'link',
+            phone: phone || null,
+            href: telHref || null,
+            pagePath: pagePath()
+          });
+        }
+        return;
+      }
+
+      // Catalog / product inquiry
+      if (IS_CATALOG || IS_FULL) {
+        var inq = closest(target, '.card-inquiry-btn, #zappy-pdp-inquiry-btn, a.inquiry-btn');
+        if (inq) {
+          if (!dedupe('inq:' + (inq.id || inq.className))) {
+            var product = window.currentProduct || null;
+            var productId = (inq.getAttribute && inq.getAttribute('data-product-id')) ||
+              (product && product.id) || null;
+            var productName = (inq.getAttribute && inq.getAttribute('data-product-name')) ||
+              (product && product.name) || null;
+            var channel = 'contact_page';
+            var inqHref = (inq.tagName === 'A' && inq.href) ? inq.href : '';
+            if (inqHref && String(inqHref).toLowerCase().indexOf('mailto:') === 0) channel = 'mailto';
+            window.zappyFireMarketingEvent('product_inquiry', {
+              source: inq.id === 'zappy-pdp-inquiry-btn' ? 'pdp' : 'card',
+              productId: productId,
+              productName: productName,
+              channel: channel,
+              pagePath: pagePath()
+            });
+          }
+        }
+      }
+    } catch (err) {}
+  }, true);
+})();
+</script>
+    <meta property="og:title" content="שיטה שפורצת גבולות בלימודים — קרן סלע" />
+    <meta property="og:description" content="גלי את שיטת הלמידה המהפכנית שמשלבת תוכן מעמיק עם גמישות מלאה. כך תרכשי תואר בחינוך לגיל הרך באופן מקוון ותגשימי את החלומות המקצועיים שלך." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="שיטה שפורצת גבולות בלימודים — קרן סלע" />
+    <meta name="twitter:description" content="גלי את שיטת הלמידה המהפכנית שמשלבת תוכן מעמיק עם גמישות מלאה. כך תרכשי תואר בחינוך לגיל הרך באופן מקוון ותגשימי את החלומות המקצועיים שלך." />
+    <meta property="og:type" content="website" />
+  <meta property="og:locale" content="he_IL" />
   
   
   
   
   
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     .skip-link { position: absolute; top: 0; left: 0; transform: translateY(-200%); padding: 12px 18px; background: var(--bg-dark, #1a1a1a); color: var(--text-light, #fff); font-weight: 600; border-radius: 0 0 8px 0; z-index: 10000; }
     .skip-link:focus { transform: none; outline: 2px solid var(--ring, #fff); outline-offset: 2px; }
@@ -306,18 +674,18 @@
 
   
     <!-- Favicons -->
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png">
-    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
     <!-- Cookie Consent -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.css">
-    <script src="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.umd.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.css" />
+    
     <!-- Mickidum Accessibility Toolbar -->
-    <script src="https://cdn.jsdelivr.net/gh/mickidum/acc_toolbar/acctoolbar/acctoolbar.min.js"></script>
+    
 
 
     <style id="zappy-announcement-bar-styles">
@@ -356,14 +724,20 @@
       opacity: 1 !important;
     }
     </style>
-    <link rel="stylesheet" href="/styles.css">
+    <style id="zappy-critical-above-fold-css">
+html{box-sizing:border-box;-webkit-text-size-adjust:100%}*,*::before,*::after{box-sizing:inherit}body{margin:0;min-width:320px;overflow-x:clip}img,svg,video{max-width:100%;height:auto}main{display:block}.container{width:min(100% - 32px,1200px);margin-inline:auto}.navbar,nav.navbar,header .navbar,header[role="banner"]{position:relative;z-index:1000;width:100%}.nav-container,.navbar .container{display:flex;align-items:center;justify-content:space-between;min-height:64px}.logo,.logo-link img{display:block;width:35px;height:35px;object-fit:contain}.nav-menu,#navMenu{list-style:none;margin:0;padding:0}.navbar a,.nav-menu a,#navMenu a,.navbar .nav-links a{color:inherit;text-decoration:none}.navbar .sub-menu,.nav-menu .sub-menu,#navMenu .sub-menu{display:none}.fa,.fas,.far,.fab,.fa-solid,.fa-regular,.fa-brands{display:inline-block;min-width:1em;text-align:center}html:not(#zappy-noop)[data-zappy-site-type="ecommerce"] .phone-header-btn,html:not(#zappy-noop) .navbar:has(.nav-ecommerce-icons)>.phone-header-btn{display:none!important;visibility:hidden!important;width:0!important;height:0!important;pointer-events:none!important}.zappy-preview-empty-store-cta{display:none!important;visibility:hidden!important;height:0!important;max-height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;border:0!important;box-shadow:none!important}.zappy-catalog-menu{background:var(--surface-color,var(--surface,linear-gradient(135deg,#f8f9fa 0%,#fff 100%)));border-bottom:1px solid var(--border-color,#e5e7eb);padding:0;position:sticky;top:0;z-index:90}.zappy-catalog-menu[dir=rtl],.zappy-catalog-menu.rtl{direction:rtl}.zappy-catalog-menu[dir=ltr],.zappy-catalog-menu.ltr{direction:ltr}.catalog-menu-container{max-width:1440px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:10px 24px;overflow:visible}.catalog-menu-categories,.catalog-menu-list{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin:0;padding:0;list-style:none}.catalog-menu-item{display:inline-flex;align-items:center;padding:8px 16px;font-size:14px;font-weight:500;color:var(--text-color,var(--text,#374151));text-decoration:none;border-radius:20px;white-space:nowrap}.catalog-menu-all{background:var(--primary-color,var(--primary,#111));color:var(--text-light,#fff)!important}.catalog-menu-parent{position:relative;display:inline-flex;align-items:center}.catalog-menu-trigger{display:inline-flex;align-items:center;gap:6px}.catalog-menu-chevron{flex-shrink:0}.catalog-menu-parent>.sub-menu{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}.hero-section,.index-hero-section,section[class*="hero"]{position:relative;overflow:hidden;min-height:560px}.hero-bg-wrapper,.hero-bg-image,section[class*="hero"] [class*="hero-bg"]{position:absolute;inset:0;width:100%;height:100%}.hero-bg-wrapper img,.hero-bg-image img,section[class*="hero"] [data-hero-bg],section[class*="hero"] img[data-hero-background="true"]{width:100%!important;height:100%!important;object-fit:cover!important;display:block}.hero-content,section[class*="hero"] .container{position:relative;z-index:2}@media(max-width:768px){:root{--header-height:72px;--total-header-height:72px;--zappy-mobile-menu-top:72px}html[data-zappy-site-type="ecommerce"] body{padding-top:var(--total-header-height,72px)}html[data-zappy-site-type="ecommerce"] body>nav.navbar,html[data-zappy-site-type="ecommerce"] body>.navbar:not(.zappy-catalog-menu){position:fixed!important;top:0;left:0;right:0;z-index:100000;width:100%;margin-bottom:0}.zappy-catalog-menu{position:fixed;top:var(--header-height,72px);left:0;right:0;z-index:99999}.nav-container,.navbar .container{min-height:60px}.nav-menu,#navMenu{max-width:100vw;overflow-x:hidden}.hero-section,.index-hero-section,section[class*="hero"]{min-height:100svh}.hero-bg-wrapper,.hero-bg-image,.hero-scrim{min-height:100svh}}
+</style>
+    <link rel="preload" href="/styles.css" as="style" />
+    <link rel="stylesheet" href="/styles.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="/styles.css" /></noscript>
+    
 
     <style id="zappy-dropdown-submenu-styles">
       /* ========== DESKTOP DROPDOWN SUBMENU STYLES ========== */
       /* Base styles for dropdown submenus - parent must be positioned */
       .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { position: relative; }
       /* Submenu base - hidden by default */
-      .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { display: block !important; position: absolute !important; top: 100%; left: 0; min-width: 220px; background: white; border-radius: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 8px 0; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; z-index: 1000; list-style: none; pointer-events: none; }
+      .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { display: block !important; position: absolute !important; top: 100%; left: 0; min-width: 220px; border-radius: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 8px 0; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; z-index: 1000; list-style: none; pointer-events: none; }
       /* CRITICAL: Desktop hover styles to show dropdown */
       .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
       /* Submenu item styling */
@@ -455,50 +829,50 @@
 
     <div class="mobile-search-panel" id="mobile-search-panel">
       <div class="search-wrapper">
-        <input type="text" id="mobile-search-input" placeholder="חיפוש קורסים..." autocomplete="off">
+        <input type="text" id="mobile-search-input" placeholder="חיפוש קורסים..." autocomplete="off" />
         <button class="search-submit" id="mobile-search-submit" title="חיפוש">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
         </button>
         <button class="close-search" id="close-mobile-search">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
         </button>
       </div>
       <div class="search-results" id="mobile-search-results"></div>
     </div>
   
-<script>window.ZAPPY_WEBSITE_ID = "0ba3b779-5e2e-41f3-886c-f10bca961998";window.ZAPPY_API_BASE = "https://qaapi.zappy5.com";</script><a class="skip-link" href="#main">דלג לתוכן הראשי</a>
+<script>window.ZAPPY_WEBSITE_ID = "0ba3b779-5e2e-41f3-886c-f10bca961998";window.ZAPPY_API_BASE = "https://qaapi.zappy5.com"</script><a class="skip-link" href="#main">דלג לתוכן הראשי</a>
   <nav class="navbar" dir="rtl">
   <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
-    <svg class="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    <svg style="display:block !important" class="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
-    <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="display: none;">
-      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="display:none !important">
+      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
   </button>
   
   <button class="phone-header-btn" data-phone="[business_phone]" aria-label="Call">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
     </svg>
   </button>
 
   <div class="nav-container">
     <div class="nav-right-group"><div class="nav-brand">
-      <a href="/" class="logo-link"><img class="logo" src="/assets/online-education-logo-1783497040888-o1s65t.webp?v=1783497041897-a7e3w1" alt="קרן סלע"></a>
+      <a href="/" class="logo-link"><img class="logo" src="/assets/online-education-logo-1783497040888-o1s65t.webp?v=1783497041897-a7e3w1" alt="קרן סלע" decoding="async" width="35" height="35" /></a>
     </div><ul class="nav-menu" id="navMenu">
 
     <li class="menu-item-has-children zappy-products-dropdown">
       <a href="/courses">
         קורסים
         <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M6 9l6 6 6-6"></path>
+          <path d="M6 9l6 6 6-6"/>
         </svg>
       </a>
-      <ul class="sub-menu" id="zappy-nav-category-links">
-        <li><a href="/courses" data-i18n="ecom_products">כל הקורסים</a></li>
+      <ul class="sub-menu" id="zappy-nav-category-links" dir="rtl">
+        <li style="display:none"><a href="/courses" data-i18n="ecom_products">כל הקורסים</a></li>
         <!-- Categories will be loaded dynamically -->
-      </ul>
+      <li data-category-id="09b9633f-5102-4dd1-a583-9c10f9300a9f" data-category-slug="x-courses"><a href="/category/x-courses" dir="rtl">קורסים בנושא X </a></li></ul>
     </li>
   
 
@@ -510,7 +884,7 @@
 
     
   <li><a href="/">בית</a></li><li><a href="/learning-method">שיטת למידה</a></li><li><a href="/about">אודות</a></li><li><a href="/contact">צור קשר</a></li></ul><div class="nav-ecommerce-icons nav-icons-left"><a href="/login" class="login-link nav-login" title="התחברות"><svg class="login-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a><a href="#cart" class="cart-link nav-cart" id="cart-drawer-toggle" title="עגלת קניות"><svg class="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="cart-count">0</span></a><div class="nav-search-box">
-    <input type="text" class="nav-search-input" id="nav-search-input" placeholder="חיפוש קורסים..." autocomplete="off">
+    <input type="text" class="nav-search-input" id="nav-search-input" placeholder="חיפוש קורסים..." autocomplete="off" />
     <button class="nav-search-btn" id="nav-search-btn" title="חיפוש">
       <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
     </button>
@@ -523,12 +897,10 @@
   </div>
 </nav>
 
-    <nav class="zappy-catalog-menu rtl" id="zappy-catalog-menu" dir="rtl" style="display:none">
+    <nav class="zappy-catalog-menu rtl" id="zappy-catalog-menu" dir="rtl">
       <div class="catalog-menu-container">
-        <a href="/courses" class="catalog-menu-item catalog-menu-all">כל הקורסים</a>
-        <div class="catalog-menu-categories" id="zappy-category-links">
-          <!-- Categories will be loaded dynamically -->
-        </div>
+        <a href="/courses" class="catalog-menu-item catalog-menu-all" style="display:none">כל הקורסים</a>
+        <div class="catalog-menu-categories" id="zappy-category-links" dir="rtl" data-zappy-catalog-baked="1"><a href="/category/x-courses" class="catalog-menu-item" data-category-id="09b9633f-5102-4dd1-a583-9c10f9300a9f" data-category-slug="x-courses" dir="rtl">קורסים בנושא X </a></div>
       </div>
     </nav>
   
@@ -978,7 +1350,7 @@
     <!-- START (Right) Column: Content -->
     <div class="learning-method-intro-section__content">
       <h1 class="learning-method-intro-section__headline">
-        שיטת הלימוד<br>שמשנה את הדרך<br>שלך ללמוד
+        שיטת הלימוד<br />שמשנה את הדרך<br />שלך ללמוד
       </h1>
       <p class="learning-method-intro-section__description">
         בקרן סלע אנחנו מאמינות שלמידה איכותית צריכה להיות בהירה, נגישה ופרקטית. הקורסים הדיגיטליים שלנו בנויים במסלול מדורג שמתאים את עצמו לקצב האישי שלך – בין אם את בתחילת הדרך או כבר מנוסה. אנחנו משלבות תיאוריה מבוססת מחקר עם תרגול מעשי, כדי שכל תוכן שתרכשי יהפוך לכלי עבודה אמיתי. הגישה שלנו שמה דגש על חוויית למידה חיובית, תומכת ומעצימה, שמאפשרת לכל אחת למצות את הפוטנציאל הטמון בה.
@@ -992,17 +1364,17 @@
     <!-- END (Left) Column: Illustrative Panel -->
     <div class="learning-method-intro-section__visual">
       <div class="learning-method-intro-section__roadmap-card card-glassmorphism">
-        <img loading="eager" fetchpriority="high" data-placeholder="learning-method-intro-image-1" data-context="Abstract educational roadmap illustration with glowing indigo and aqua contour lines, representing a structured learning pathway with milestones and transformative progress for an online education brand." width="600" height="400" src="/assets/site-learning-method-intro-image-1.webp" alt="מפת דרכים ללמידה דיגיטלית - איור מופשט של מסלול למידה מובנה" class="learning-method-intro-section__roadmap-img">
+        <img loading="lazy" fetchpriority="low" data-placeholder="learning-method-intro-image-1" data-context="Abstract educational roadmap illustration with glowing indigo and aqua contour lines, representing a structured learning pathway with milestones and transformative progress for an online education brand." width="600" height="400" src="/assets/site-learning-method-intro-image-1.webp" alt="מפת דרכים ללמידה דיגיטלית - איור מופשט של מסלול למידה מובנה" class="learning-method-intro-section__roadmap-img" decoding="async" />
         <div class="learning-method-intro-section__roadmap-glow"></div>
       </div>
       <!-- Decorative SVG: Abstract topographic contour lines -->
       <svg class="learning-method-intro-section__decorative-lines" data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 200 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,50 Q50,30 100,60 T200,40" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.3"></path>
-        <path d="M0,80 Q50,60 100,90 T200,70" fill="none" stroke="var(--primary)" stroke-width="2" opacity="0.25"></path>
-        <path d="M0,110 Q50,90 100,120 T200,100" fill="none" stroke="var(--secondary)" stroke-width="2" opacity="0.3"></path>
-        <path d="M0,140 Q50,120 100,150 T200,130" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.2"></path>
-        <path d="M0,170 Q50,150 100,180 T200,160" fill="none" stroke="var(--primary)" stroke-width="2" opacity="0.25"></path>
-        <path d="M0,200 Q50,180 100,210 T200,190" fill="none" stroke="var(--secondary)" stroke-width="2" opacity="0.2"></path>
+        <path d="M0,50 Q50,30 100,60 T200,40" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.3"/>
+        <path d="M0,80 Q50,60 100,90 T200,70" fill="none" stroke="var(--primary)" stroke-width="2" opacity="0.25"/>
+        <path d="M0,110 Q50,90 100,120 T200,100" fill="none" stroke="var(--secondary)" stroke-width="2" opacity="0.3"/>
+        <path d="M0,140 Q50,120 100,150 T200,130" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.2"/>
+        <path d="M0,170 Q50,150 100,180 T200,160" fill="none" stroke="var(--primary)" stroke-width="2" opacity="0.25"/>
+        <path d="M0,200 Q50,180 100,210 T200,190" fill="none" stroke="var(--secondary)" stroke-width="2" opacity="0.2"/>
       </svg>
     </div>
   </div>
@@ -1010,7 +1382,7 @@
   <!-- Bottom Divider: Gentle Contour-Line Clip Path -->
   <div class="learning-method-intro-section__divider-wrapper">
     <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,80 L0,30 Q100,15 200,32 T400,28 Q500,35 600,25 T800,30 Q900,22 1000,35 T1200,28 L1200,80 Z" fill="#202531"></path>
+      <path d="M0,80 L0,30 Q100,15 200,32 T400,28 Q500,35 600,25 T800,30 Q900,22 1000,35 T1200,28 L1200,80 Z" fill="#202531"/>
     </svg>
   </div>
 </section>
@@ -1031,9 +1403,9 @@
         <div class="learning-method-process-section__stage-icon-wrapper">
           <div class="learning-method-process-section__stage-icon">
             <svg data-element-type="icon" data-icon-type="svg" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="16" cy="10" r="4" stroke="currentColor" stroke-width="2"></circle>
-              <path d="M8 26c0-4.418 3.582-8 8-8s8 3.582 8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-              <circle cx="16" cy="10" r="1.5" fill="currentColor"></circle>
+              <circle cx="16" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+              <path d="M8 26c0-4.418 3.582-8 8-8s8 3.582 8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="16" cy="10" r="1.5" fill="currentColor"/>
             </svg>
           </div>
           <div class="learning-method-process-section__stage-connector"></div>
@@ -1050,8 +1422,8 @@
         <div class="learning-method-process-section__stage-icon-wrapper">
           <div class="learning-method-process-section__stage-icon">
             <svg data-element-type="icon" data-icon-type="svg" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="4" y="6" width="24" height="20" rx="3" stroke="currentColor" stroke-width="2"></rect>
-              <path d="M12 16l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <rect x="4" y="6" width="24" height="20" rx="3" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 16l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <div class="learning-method-process-section__stage-connector"></div>
@@ -1068,9 +1440,9 @@
         <div class="learning-method-process-section__stage-icon-wrapper">
           <div class="learning-method-process-section__stage-icon">
             <svg data-element-type="icon" data-icon-type="svg" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 6h16M8 16h16M8 26h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-              <circle cx="24" cy="24" r="5" stroke="currentColor" stroke-width="2"></circle>
-              <path d="M26.5 26.5L29 29" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+              <path d="M8 6h16M8 16h16M8 26h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="24" cy="24" r="5" stroke="currentColor" stroke-width="2"/>
+              <path d="M26.5 26.5L29 29" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             </svg>
           </div>
           <div class="learning-method-process-section__stage-connector"></div>
@@ -1087,9 +1459,9 @@
         <div class="learning-method-process-section__stage-icon-wrapper">
           <div class="learning-method-process-section__stage-icon">
             <svg data-element-type="icon" data-icon-type="svg" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M16 4v18M16 22l-4-4M16 22l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path d="M6 28h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-              <path d="M10 28v-4a6 6 0 0112 0v4" stroke="currentColor" stroke-width="2"></path>
+              <path d="M16 4v18M16 22l-4-4M16 22l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6 28h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M10 28v-4a6 6 0 0112 0v4" stroke="currentColor" stroke-width="2"/>
             </svg>
           </div>
         </div>
@@ -1108,11 +1480,11 @@
     <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="process-divider-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#F8F4EE"></stop>
-          <stop offset="100%" stop-color="#F8F4EE" stop-opacity="0.3"></stop>
+          <stop offset="0%" stop-color="#F8F4EE"/>
+          <stop offset="100%" stop-color="#F8F4EE" stop-opacity="0.3"/>
         </linearGradient>
       </defs>
-      <path d="M0,80 L0,45 Q150,25 300,40 T600,30 Q750,35 900,25 T1200,15 L1200,80 Z" fill="#F2EFE9"></path>
+      <path d="M0,80 L0,45 Q150,25 300,40 T600,30 Q750,35 900,25 T1200,15 L1200,80 Z" fill="#F2EFE9"/>
     </svg>
   </div>
 </section>
@@ -1134,8 +1506,8 @@
         <div class="benefit-card-glow benefit-card-glow--aqua"></div>
         <div class="benefit-card-icon">
           <svg data-element-type="icon" data-icon-type="svg" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.5"></circle>
-            <path d="M10 16L14 20L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M10 16L14 20L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
         <div class="benefit-card-content">
@@ -1149,8 +1521,8 @@
         <div class="benefit-card-glow benefit-card-glow--apricot"></div>
         <div class="benefit-card-icon">
           <svg data-element-type="icon" data-icon-type="svg" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 4C16 4 8 10 8 18C8 22.4183 11.5817 26 16 26C20.4183 26 24 22.4183 24 18C24 10 16 4 16 4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
-            <path d="M16 22C18.2091 22 20 20.2091 20 18C20 15.7909 18.2091 14 16 14C13.7909 14 12 15.7909 12 18C12 20.2091 13.7909 22 16 22Z" stroke="currentColor" stroke-width="1.5"></path>
+            <path d="M16 4C16 4 8 10 8 18C8 22.4183 11.5817 26 16 26C20.4183 26 24 22.4183 24 18C24 10 16 4 16 4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M16 22C18.2091 22 20 20.2091 20 18C20 15.7909 18.2091 14 16 14C13.7909 14 12 15.7909 12 18C12 20.2091 13.7909 22 16 22Z" stroke="currentColor" stroke-width="1.5"/>
           </svg>
         </div>
         <div class="benefit-card-content">
@@ -1164,9 +1536,9 @@
         <div class="benefit-card-glow benefit-card-glow--aqua"></div>
         <div class="benefit-card-icon">
           <svg data-element-type="icon" data-icon-type="svg" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="4" y="8" width="24" height="16" rx="2" stroke="currentColor" stroke-width="1.5"></rect>
-            <path d="M12 28H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-            <path d="M16 24V28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <rect x="4" y="8" width="24" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M12 28H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M16 24V28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
         <div class="benefit-card-content">
@@ -1180,8 +1552,8 @@
         <div class="benefit-card-glow benefit-card-glow--apricot"></div>
         <div class="benefit-card-icon">
           <svg data-element-type="icon" data-icon-type="svg" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="16" cy="11" r="5" stroke="currentColor" stroke-width="1.5"></circle>
-            <path d="M6 27C6 22.5817 10.4772 19 16 19C21.5228 19 26 22.5817 26 27" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <circle cx="16" cy="11" r="5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M6 27C6 22.5817 10.4772 19 16 19C21.5228 19 26 22.5817 26 27" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
         <div class="benefit-card-content">
@@ -1195,7 +1567,7 @@
         <div class="benefit-card-glow benefit-card-glow--aqua"></div>
         <div class="benefit-card-icon">
           <svg data-element-type="icon" data-icon-type="svg" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 24C8 24 6 22 6 18C6 14 9 12 12 12C15 12 16 14 16 14C16 14 17 12 20 12C23 12 26 14 26 18C26 22 24 24 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M8 24C8 24 6 22 6 18C6 14 9 12 12 12C15 12 16 14 16 14C16 14 17 12 20 12C23 12 26 14 26 18C26 22 24 24 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
         <div class="benefit-card-content">
@@ -1212,10 +1584,10 @@
     <svg viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <filter id="torn-shadow" x="-5%" y="-10%" width="110%" height="120%">
-          <fedropshadow dx="0" dy="-4" stdDeviation="6" flood-color="#1A1F4E" flood-opacity="0.12"></fedropshadow>
+          <feDropShadow dx="0" dy="-4" stdDeviation="6" flood-color="#1A1F4E" flood-opacity="0.12"/>
         </filter>
       </defs>
-      <path d="M0,80 L0,42 Q40,38 80,44 T160,36 Q200,42 240,38 T320,44 Q360,36 400,40 T480,35 Q520,42 560,38 T640,44 Q680,36 720,40 T800,35 Q840,42 880,38 T960,44 Q1000,36 1040,40 T1120,35 Q1160,42 1200,38 L1200,80 Z" fill="#202531" filter="url(#torn-shadow)"></path>
+      <path d="M0,80 L0,42 Q40,38 80,44 T160,36 Q200,42 240,38 T320,44 Q360,36 400,40 T480,35 Q520,42 560,38 T640,44 Q680,36 720,40 T800,35 Q840,42 880,38 T960,44 Q1000,36 1040,40 T1120,35 Q1160,42 1200,38 L1200,80 Z" fill="#202531" filter="url(#torn-shadow)"/>
     </svg>
   </div>
 </section>
@@ -1229,8 +1601,8 @@
           <h3 class="faq-question-text">האם אני צריך ניסיון קודם בתחום?</h3>
           <span class="faq-icon" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-element-type="icon" data-icon-type="svg">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
-              <path d="M12 7V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 7V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             </svg>
           </span>
         </div>
@@ -1241,8 +1613,8 @@
           <h3 class="faq-question-text">באיזה קצב מתקדמים? האם אפשר לשלב עם עבודה?</h3>
           <span class="faq-icon" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-element-type="icon" data-icon-type="svg">
-              <path d="M20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z" stroke="currentColor" stroke-width="2"></path>
-              <path d="M12 8V12L14.5 14.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+              <path d="M20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 8V12L14.5 14.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             </svg>
           </span>
         </div>
@@ -1253,8 +1625,8 @@
           <h3 class="faq-question-text">האם התוכנית מתאימה גם למחליפי קריירה?</h3>
           <span class="faq-icon" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-element-type="icon" data-icon-type="svg">
-              <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2"></path>
-              <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2"></path>
+              <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2"/>
             </svg>
           </span>
         </div>
@@ -1265,8 +1637,8 @@
           <h3 class="faq-question-text">אני לא כל כך טכנולוגית, זה עדיין יתאים לי?</h3>
           <span class="faq-icon" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-element-type="icon" data-icon-type="svg">
-              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="2"></rect>
-              <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="2"/>
+              <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
         </div>
@@ -1277,10 +1649,10 @@
           <h3 class="faq-question-text">איך נראה תהליך הלמידה בפועל?</h3>
           <span class="faq-icon" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-element-type="icon" data-icon-type="svg">
-              <path d="M4 19.5V4.5C4 3.67157 4.67157 3 5.5 3H18.5C19.3284 3 20 3.67157 20 4.5V19.5C20 20.3284 19.3284 21 18.5 21H5.5C4.67157 21 4 20.3284 4 19.5Z" stroke="currentColor" stroke-width="2"></path>
-              <path d="M8 7H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-              <path d="M8 11H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-              <path d="M8 15H12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+              <path d="M4 19.5V4.5C4 3.67157 4.67157 3 5.5 3H18.5C19.3284 3 20 3.67157 20 4.5V19.5C20 20.3284 19.3284 21 18.5 21H5.5C4.67157 21 4 20.3284 4 19.5Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M8 7H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M8 11H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M8 15H12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             </svg>
           </span>
         </div>
@@ -1297,7 +1669,7 @@
       <!-- Company Info Column -->
       <div class="footer-col footer-col--brand">
         <div class="footer-logo">
-          <img src="/assets/online-education-logo.webp" alt="קרן סלע" class="logo">
+          <img src="/assets/online-education-logo.webp" alt="קרן סלע" class="logo" decoding="async" width="35" height="35" />
         </div>
         <p class="footer-tagline">מסע הלמידה שלך מתחיל כאן. אנו מלווים אנשי חינוך, יזמים דיגיטליים וסקרנים טכנולוגיים במסלול אישי ומדויק לצמיחה מקצועית.</p>
       </div>
@@ -1369,6 +1741,10 @@
 
     <script src="/script.js"></script>
 
+    <script id="zappy-font-awesome-loader">
+(function(){if(window.__zappyFontAwesomeLoader)return;window.__zappyFontAwesomeLoader=true;var href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';function load(){if(document.querySelector('link[href*="font-awesome"][href*="all.min.css"]'))return;var l=document.createElement('link');l.rel='stylesheet';l.href=href;l.crossOrigin='anonymous';l.referrerPolicy='no-referrer';document.head.appendChild(l);}function schedule(){if('requestIdleCallback'in window){requestIdleCallback(load,{timeout:5000});}else{setTimeout(load,3500);}}['pointerdown','keydown','touchstart','mouseover'].forEach(function(evt){window.addEventListener(evt,load,{once:true,passive:true});});schedule();})();
+</script>
+
     <script id="zappy-mobile-submenu-script">
     (function() {
       function initMobileSubmenuToggles() {
@@ -1433,10 +1809,10 @@
       var st=true?td:tl;
       nb.style.transition='background 0.3s ease,backdrop-filter 0.3s ease,-webkit-backdrop-filter 0.3s ease,box-shadow 0.3s ease';
       if(cm)cm.style.transition='background 0.3s ease,backdrop-filter 0.3s ease,-webkit-backdrop-filter 0.3s ease';
-      var neSel='a,.navbar-brand,.navbar-brand a,.dropdown-toggle,.mobile-toggle,.phone-header-btn,.mobile-hamburger-btn,.mobile-close-btn,.mobile-submenu-toggle,.nav-link';
+      var neSel='a,.navbar-brand,.navbar-brand a,.dropdown-toggle,.mobile-toggle,.phone-header-btn,.mobile-hamburger-btn,.mobile-close-btn,.mobile-submenu-toggle,.nav-link,.lang-switcher-current';
       var skipCls=['cart-link','login-link','nav-search-toggle','search-toggle'];
-      function sTC(c,clr){var els=c.querySelectorAll(neSel);for(var i=0;i<els.length;i++){var sk=false;if(els[i].closest('.sub-menu')||els[i].closest('.dropdown-menu')){sk=true;}for(var j=0;j<skipCls.length;j++){if(els[i].classList.contains(skipCls[j])){sk=true;break;}}if(!sk)els[i].style.setProperty('color',clr,'important');}}
-      function cTC(c){var els=c.querySelectorAll(neSel);for(var i=0;i<els.length;i++){if(els[i].closest('.sub-menu')||els[i].closest('.dropdown-menu'))continue;els[i].style.removeProperty('color');}}
+      function sTC(c,clr){var els=c.querySelectorAll(neSel);for(var i=0;i<els.length;i++){var sk=false;if(els[i].closest('.sub-menu')||els[i].closest('.dropdown-menu')){sk=true;}for(var j=0;j<skipCls.length;j++){if(els[i].classList.contains(skipCls[j])){sk=true;break;}}if(!sk)els[i].style.setProperty('color',clr,'important');}try{if(typeof window.fixLanguageSwitcherColor==='function')window.fixLanguageSwitcherColor();}catch(e){}}
+      function cTC(c){var els=c.querySelectorAll(neSel);for(var i=0;i<els.length;i++){if(els[i].closest('.sub-menu')||els[i].closest('.dropdown-menu'))continue;els[i].style.removeProperty('color');}try{if(typeof window.fixLanguageSwitcherColor==='function')window.fixLanguageSwitcherColor();}catch(e){}}
       function applyScrolled(){
         nb.classList.add('scrolled');
         if(window.innerWidth>768){
@@ -1474,5 +1850,4 @@
       if(!hasDH){window.removeEventListener('scroll',onS);window.removeEventListener('resize',onS);applyScrolled();window._zappyNavNoDarkHero=true;}
     })();
     </script>
-</body>
-</html>
+</body></html>
